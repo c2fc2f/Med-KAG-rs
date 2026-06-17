@@ -1,0 +1,27 @@
+[providers.ollama]
+type = "Ollama"
+
+[databases.neo4j]
+type = "Neo4j"
+uri = "{{ env('NEO4J_URI') }}"
+password = "{{ env('NEO4J_PASSWORD') }}"
+
+[retrievers.neo4j-embedding-triplet-formal]
+type = "Embedder"
+provider = "ollama"
+model = "embeddinggemma:latest"
+top_k = 3
+
+[retrievers.neo4j-embedding-triplet-formal.extra.neo4j]
+type = "Neo4j"
+neighborhood = 1
+index = "MESH_INDEX"
+translation = {
+  type = "FormalTriplet",
+  property_filters = {
+    "MeSH:MeSHConcept" = [ "name" ],
+    "MeSH:MeSHDescriptor" = [ "name" ],
+    "MeSH:MeSHQualifier" = [ "name" ],
+    "MeSH:MeSHSupplemental" = [ "name" ]
+  }
+}
