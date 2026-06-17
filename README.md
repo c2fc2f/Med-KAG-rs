@@ -1,4 +1,4 @@
-# Med-KAG-rs
+# Med-KAG.rs
 
 This repository contains **only the data, results, and configuration** used to run
 the [`kag`](https://github.com/c2fc2f/kag) program in a medical context. It holds no
